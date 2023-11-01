@@ -19,7 +19,9 @@ path.close();
 
 export const SketchCanvasWithoutInteraction = () => {
   return (
-    <Canvas style={style.container}>
+    //<Canvas /> component serves as the root for your drawing. uses its own renderer to display its components.
+    //<Path /> component can be used to create various shapes, including lines, curves, and arcs
+   <Canvas style={style.container}>
       <Path path={path} color={"black"} style={"stroke"} strokeWidth={2} />
     </Canvas>
   );

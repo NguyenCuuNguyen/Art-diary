@@ -9,7 +9,7 @@ import {
   import React, { useCallback, useState } from "react";
   import { Pressable, StyleSheet, Text, View } from "react-native";
   
-  type PathWithColorAndWidth = {
+  export type PathWithColorAndWidth = {
     path: SkPath;
     color: Color;
     strokeWidth: number;
@@ -17,8 +17,8 @@ import {
   
   export const SketchCanvasWithInteractionAndCustomization = () => {
     const [paths, setPaths] = useState<PathWithColorAndWidth[]>([]);
-    const [color, setColor] = useState<Color>(Colors[0]);
-  
+    const [color, setColor] = useState<Color>(Colors[0]); //Added state to track the currently selected color
+    
     const [strokeWidth, setStrokeWidth] = useState(strokes[0]);
   
     const onDrawingStart = useCallback(
@@ -26,6 +26,7 @@ import {
         setPaths((currentPaths) => {
           const { x, y } = touchInfo;
           const newPath = Skia.Path.Make();
+          //We move the pen in currentPath to x/y position with moveTo function so that drawing starts from this point.
           newPath.moveTo(x, y);
           return [
             ...currentPaths,
@@ -49,6 +50,8 @@ import {
         const yMid = (lastPoint.y + y) / 2;
   
         currentPath.path.quadTo(lastPoint.x, lastPoint.y, xMid, yMid);
+        console.log('currentPath:', currentPath)
+        console.log('currentPaths:', currentPaths)
         return [...currentPaths.slice(0, currentPaths.length - 1), currentPath];
       });
     }, []);
@@ -71,6 +74,7 @@ import {
         />
         <Canvas style={style.container} onTouch={touchHandler}>
           {paths.map((path, index) => (
+            //Use the stroke width and color properties on the <Path /> component.
             <Path
               key={index}
               path={path.path}
@@ -88,6 +92,7 @@ import {
   
   type Color = (typeof Colors)[number];
   
+  //Added a component that allows us to select colors and stroke widths from a predefined list.
   type ToolbarProps = {
     color: Color;
     strokeWidth: number;
@@ -103,8 +108,9 @@ import {
     setColor,
     setStrokeWidth,
   }: ToolbarProps) => {
-    const [showStrokes, setShowStrokes] = useState(false);
-  
+    //Added state to track the currently selected stroke width.
+    const [showStrokes, setShowStrokes] = useState(false); 
+    //Store the color and stroke width selected when a line was created with the line.
     const handleStrokeWidthChange = (stroke: number) => {
       setStrokeWidth(stroke);
       setShowStrokes(false);
@@ -170,7 +176,8 @@ import {
       />
     );
   };
-  
+
+
   const style = StyleSheet.create({
     container: {
       flex: 1,
