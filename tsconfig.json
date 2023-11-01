@@ -1,4 +1,9 @@
 {
-  "compilerOptions": {},
+  "compilerOptions": {
+    "jsx": "react"
+},
+"emmet.includeLanguages": {
+  "javascript": "javascriptreact"
+},
   "extends": "expo/tsconfig.base"
 }
