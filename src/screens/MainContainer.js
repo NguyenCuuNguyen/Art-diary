@@ -37,9 +37,7 @@ export default function MainContainer(){
                     tabBarLabelStyle: {paddingBottom: 10, fontSize:10},
                     tabBarStyle: {padding:10, height:100}
 
-                })}
-            >
-                
+                })}>
                 <Tab.Screen name={homeName} component={HomeScreen}/>
                 <Tab.Screen name={settingName} component={SettingScreen}/>
                 <Tab.Screen name={detailName} component={DetailScreen}/>
@@ -48,11 +46,3 @@ export default function MainContainer(){
         </NavigationContainer>
     )
 }
-
-
-// tabBarOptions={{
-//     activeTintColor: '#7a16b8',
-//     inactiveTintColor: 'grey',
-//     labelStyle: {paddingBottom: 10, fontSize:10},
-//     style: {padding:10, height:70}
-// }}
