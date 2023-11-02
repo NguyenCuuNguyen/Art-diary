@@ -50,8 +50,6 @@ import {
         const yMid = (lastPoint.y + y) / 2;
   
         currentPath.path.quadTo(lastPoint.x, lastPoint.y, xMid, yMid);
-        console.log('currentPath:', currentPath)
-        console.log('currentPaths:', currentPaths)
         return [...currentPaths.slice(0, currentPaths.length - 1), currentPath];
       });
     }, []);
