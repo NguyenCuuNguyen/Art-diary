@@ -5,7 +5,9 @@ import { SafeAreaView } from "react-native";
 import { SketchCanvasWithInteractionAndCustomization } from '../canvas-with-interactivity-and-customizability';
 export default function DrawScreen() {
     return (
+        
         <SketchCanvasWithInteractionAndCustomization />
+        
     )
 }
 //<SafeAreaView >
